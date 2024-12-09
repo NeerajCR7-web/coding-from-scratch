@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Monty Hall Problem</title>
+</head>
+<body>
+
+    <h1>The Monty Hall Problem</h1>
+
+    <script>
+
+        // Define a variable to determine how many times to repeat the script
+        let repeat = 10000;
+
+        // Define a variable to track how many times stay would be the right choice
+        let stay = 0;
+
+        // Loop using the repeat variable
+        for(let i = 0; i < repeat; i++)
+        {
+            
+            // Step 1
+            // Place the prize behind a random door
+            let winningDoor = Math.ceil(Math.random() * 3);
+            document.write("<p>The winning door is number " + winningDoor + ".</p>");
+
+            // Step 2 
+            // Winner needs to choose a door
+            let choice = Math.ceil(Math.random() * 3);
+            document.write("<p>The chosen door is number " + choice + ".</p>");
+
+            // Step 3
+            // Remove a non-winning non-chosen door 
+
+            // Method 1
+            // Created a list of doors that could be removed
+            // Randomly removed one of those door
+            /*
+            let doors = [];
+            for(let i = 1; i <= 3; i ++)
+
+            // If the removing door is the winning door or the chosen door, then 
+            // choose another random door
+            while(remove == choice || remove == winningDoor)
+            {
+                if(i != winningDoor && i != choice)
+                {
+                    doors.push(i);
+                }
+            }
+
+            let removeKey = Math.floor(Math.random() * doors.length);
+            let removeDoor = doors[removeKey];
+
+            document.write("<p>The random key is " + removeKey + " for array " + doors.join(",") + ".</p>");
+            document.write("<p>The removed door is number " + removeDoor + ".</p>");
+            */
+
+            // Method 2
+            // Choose a random door to remove
+            // Check the random door (non-winning non-chosen)
+            // Repeat
+            /*
+            let removeDoor = Math.ceil(Math.random() * 3);
+            while(removeDoor == choice || removeDoor == winningDoor)
+            {
+                removeDoor = Math.ceil(Math.random() * 3);
+            }
+            */
+
+            let removeDoor;
+            do
+            {
+                removeDoor = Math.ceil(Math.random() * 3);
+            }
+            while(removeDoor == choice || removeDoor == winningDoor);
+
+            document.write("<p>The removed door is number " + removeDoor + ".</p>");
+
+            // Step 4
+            // Display the results
+            if(winningDoor == choice)
+            {
+                document.write("<h2>STAY!</h2>");
+                stay ++;
+            }
+            else
+            {
+                document.write("<h2>SWITCH!</h2>");
+            }
+
+            document.write("<hr>");
+
+        }
+
+        let percent = (stay / repeat * 100).toFixed(2);
+        document.write("<p>Percent STAY is the right choice is " + percent + "%.</p>");
+
+    </script>
+    
+</body>
+</html>

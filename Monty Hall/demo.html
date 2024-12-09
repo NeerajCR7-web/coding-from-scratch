@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Monty Hall Problem</title>
+  </head>
+  <body>
+    <h1>The Monty Hall Problem</h1>
+
+    <script>
+      let stayCounter = 0;
+      let switchCounter = 0;
+      for(let i = 0; i < 10000; i++){
+      // Randomly place a car in a door 1, 2, or 3
+      // let car = Math.floor(Math.random() * 3) + 1;
+      var car = Math.ceil(Math.random() * 3);
+      document.write("<p>The car is in door number " + car + "</p>");
+
+      var choice = Math.ceil(Math.random() * 3);
+            document.write("<p>The contestant chosen door is number " + choice + ".</p>");
+
+      var remove = Math.ceil(Math.random() * 3);
+      
+
+      //Check the removed door. make sure its not the same as choice
+      // or remove
+
+    while(remove === car || remove === choice)
+    {
+      remove = Math.ceil(Math.random() * 3);
+    }
+    document.write("<p>The host removes door  number " + remove + ".</p>");
+   
+    //Results
+    if(car == choice)
+            {
+              stayCounter++;
+                document.write("<p style='color:green;'>The contestant should stay.</p>");
+               
+            }
+            else
+            {
+              switchCounter++;
+                document.write("<p style='color:red;'>The contestant should switch.</p>");
+            }
+          }
+
+        
+          document.write("<h2 style='color:red;'>Stay was correct " + stayCounter + " tiems</h2>");
+          document.write("<h2 style='color:green;'>Switch was correct " + switchCounter + " tiems</h2>");
+        
+
+       var percent = (stayCounter / 10000 * 100).toFixed(2);
+      document.write("<p>Percentage for stay is " + percent + "%.</p>");
+
+      var percent = (switchCounter / 10000 * 100).toFixed(2);
+      document.write("<p>Percentage for switch is  " + percent + "%.</p>");
+
+
+    </script>
+  </body>
+</html>
